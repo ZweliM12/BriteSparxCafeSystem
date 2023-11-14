@@ -237,8 +237,6 @@ namespace BriteSparxCafeSystem
         private void CategoryNametextBox_TextChanged(object sender, EventArgs e)
         {
             string firstName = CategoryNametextBox.Text.Trim();
-           
-
             // Define a regular expression pattern for a name starting with a capital letter and followed by letters only
             string pattern = "^[A-Z][a-zA-Z]*$";
 
