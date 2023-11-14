@@ -166,7 +166,7 @@ namespace BriteSparxCafeSystem
                 }
                 else
                 {
-                    MessageBox.Show("Please enter the Category ID", "Incomplete Information");
+                    MessageBox.Show("Please enter the Category ID", "Incomplete Information!");
                 }
             }
             catch
