@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.deliveryCustBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ds1 = new BriteSparxCafeSystem.GroupWst17DataSet();
             this.ExitButton = new System.Windows.Forms.Button();
@@ -48,6 +46,8 @@
             this.orderTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.taOrder1 = new BriteSparxCafeSystem.GroupWst17DataSetTableAdapters.OrderTableTableAdapter();
             this.delivery_CustTableAdapter = new BriteSparxCafeSystem.GroupWst17DataSetTableAdapters.Delivery_CustTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.deliveryCustBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.custNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phonenumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +57,6 @@
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryCustBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds1)).BeginInit();
             this.panel5.SuspendLayout();
@@ -66,6 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst17DataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryCustBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -93,26 +94,6 @@
             this.tabPage1.Size = new System.Drawing.Size(1916, 994);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Assigned Deliveries";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIDDataGridViewTextBoxColumn,
-            this.custNameDataGridViewTextBoxColumn,
-            this.phonenumberDataGridViewTextBoxColumn,
-            this.deliverypointnameDataGridViewTextBoxColumn,
-            this.totalamountDataGridViewTextBoxColumn,
-            this.orderstatusDataGridViewTextBoxColumn,
-            this.dateDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.deliveryCustBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 252);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1147, 350);
-            this.dataGridView1.TabIndex = 84;
             // 
             // deliveryCustBindingSource
             // 
@@ -235,6 +216,31 @@
             // 
             this.delivery_CustTableAdapter.ClearBeforeFill = true;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIDDataGridViewTextBoxColumn,
+            this.custNameDataGridViewTextBoxColumn,
+            this.phonenumberDataGridViewTextBoxColumn,
+            this.deliverypointnameDataGridViewTextBoxColumn,
+            this.totalamountDataGridViewTextBoxColumn,
+            this.orderstatusDataGridViewTextBoxColumn,
+            this.dateDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.deliveryCustBindingSource1;
+            this.dataGridView1.Location = new System.Drawing.Point(52, 317);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(978, 186);
+            this.dataGridView1.TabIndex = 84;
+            // 
+            // deliveryCustBindingSource1
+            // 
+            this.deliveryCustBindingSource1.DataMember = "Delivery_Cust";
+            this.deliveryCustBindingSource1.DataSource = this.ds1;
+            // 
             // orderIDDataGridViewTextBoxColumn
             // 
             this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "order_ID";
@@ -272,8 +278,6 @@
             // totalamountDataGridViewTextBoxColumn
             // 
             this.totalamountDataGridViewTextBoxColumn.DataPropertyName = "total_amount";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.totalamountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
             this.totalamountDataGridViewTextBoxColumn.HeaderText = "total_amount";
             this.totalamountDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.totalamountDataGridViewTextBoxColumn.Name = "totalamountDataGridViewTextBoxColumn";
@@ -307,7 +311,6 @@
             this.Load += new System.EventHandler(this.Delivery_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryCustBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ds1)).EndInit();
             this.panel5.ResumeLayout(false);
@@ -317,6 +320,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.customerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupWst17DataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryCustBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,9 +342,9 @@
         private GroupWst17DataSet1 groupWst17DataSet1;
         private System.Windows.Forms.BindingSource customerBindingSource;
         private GroupWst17DataSet1TableAdapters.CustomerTableAdapter taCustomer1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource deliveryCustBindingSource;
         private GroupWst17DataSetTableAdapters.Delivery_CustTableAdapter delivery_CustTableAdapter;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn custNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn phonenumberDataGridViewTextBoxColumn;
@@ -347,5 +352,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn totalamountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderstatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource deliveryCustBindingSource1;
     }
 }

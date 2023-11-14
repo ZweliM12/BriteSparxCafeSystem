@@ -24,7 +24,7 @@ namespace BriteSparxCafeSystem
            {
                if(textBox1.Text == textBox2.Text)
                {
-                   SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;Persist Security Info=True;User ID=GroupWst17;Password=***********");
+                   SqlConnection con = new SqlConnection("removed for security");
                    SqlCommand cmd = new SqlCommand("UPDATE [dbo].[Staff] SET [password] = '" + textBox2.Text + "' WHERE email_address = '" + email_address + "' ", con);
                    con.Open();
                    cmd.ExecuteNonQuery();
@@ -43,7 +43,7 @@ namespace BriteSparxCafeSystem
         {
             if (textBox1.Text == textBox2.Text)
             {
-                string connectionString = "Data Source=146.230.177.46;Initial Catalog=GroupWst17;Persist Security Info=True;User ID=GroupWst17;Password=w31v7";
+                string connectionString = "removed for security";
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     con.Open();

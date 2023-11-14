@@ -31,7 +31,7 @@ namespace BriteSparxCafeSystem
             }
             else
             {
-                    SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7");
+                    SqlConnection con = new SqlConnection("removed for security");
                     SqlCommand command = new SqlCommand("Select * from Staff where username=@username and password=@password", con);
                     command.Parameters.AddWithValue("@username", userNametextBox.Text);
                     command.Parameters.AddWithValue("@password", passwordtextBox.Text);
@@ -104,7 +104,7 @@ namespace BriteSparxCafeSystem
             }
             else
             {
-                SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7");
+                SqlConnection con = new SqlConnection("removed for security");
                 SqlCommand command = new SqlCommand("Select * from Staff where username=@username and password=@password", con);
                 command.Parameters.AddWithValue("@username", userNametextBox.Text);
                 command.Parameters.AddWithValue("@password", passwordtextBox.Text);

@@ -23,39 +23,51 @@ namespace BriteSparxCafeSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
-                string from, pass, messageBody;
+
+            string from, pass, messageBody;
             Random rand = new Random();
             randomCode = (rand.Next(99999)).ToString();
             MailMessage message = new MailMessage();
 
             to = (textBox1.Text).ToString();
             from = "mwelasejae@gmail.com";
-            pass = "zctceqhvumhaggld";
+            pass = "removed for security";
             messageBody = "your reset code is " + randomCode;
             message.To.Add(to);
             message.From = new MailAddress(from);
             message.Body = messageBody;
             message.Subject = "Password reset code";
 
+
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             SmtpClient smtp = new SmtpClient("smtp.gmail.com");
             smtp.EnableSsl = true;
-            smtp.Port = 587;
+            smtp.Port = 465;
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.UseDefaultCredentials = false; // Set this to false to use your own credentials
+            smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(from, pass);
             try
             {
                 smtp.Send(message);
                 MessageBox.Show("Code sent successfully.");
-            } catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
-
-
+            catch (SmtpException smtpEx)
+            {
+                if (smtpEx.InnerException is System.Security.Authentication.AuthenticationException authEx)
+                {
+                    MessageBox.Show($"SSL/TLS Handshake Error: {authEx.Message}", "Error");
+                }
+                else
+                {
+                    MessageBox.Show($"SMTP Error: {smtpEx.Message}", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error");
+            }
         }
-
+       
         private void button2_Click(object sender, EventArgs e)
         {
             if(randomCode == (textBox2.Text).ToString())

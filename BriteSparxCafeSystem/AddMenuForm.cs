@@ -46,7 +46,7 @@ namespace BriteSparxCafeSystem
 
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                        using (SqlConnection con = new SqlConnection("removed for security"))
                         {
                             SqlCommand command = new SqlCommand("INSERT INTO Menu (category_ID, name, description, price, quantity_on_hand) VALUES (@category_ID, @name, @description, @price, @quantity_on_hand)", con);
                             con.Open();
@@ -164,7 +164,7 @@ namespace BriteSparxCafeSystem
 
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                        using (SqlConnection con = new SqlConnection("removed for security"))
                         {
                             con.Open();
 
@@ -262,7 +262,7 @@ namespace BriteSparxCafeSystem
 
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                        using (SqlConnection con = new SqlConnection("removed for security"))
                         {
                             con.Open();
                             SqlCommand selectCommand = new SqlCommand("SELECT * FROM Menu WHERE menu_ID=@menu_ID", con);

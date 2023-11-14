@@ -10,14 +10,21 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace BriteSparxCafeSystem
 {
+
     public partial class AddCustomerForm : Form
     {
+        private ErrorProvider errorProvider;
+        public static string to;
         public AddCustomerForm()
         {
             InitializeComponent();
+            InitializeErrorProvider();
         }
 
         private void AddNewCustomerForm_Load(object sender, EventArgs e)
@@ -106,96 +113,57 @@ namespace BriteSparxCafeSystem
         }
 
 
+        private void InitializeErrorProvider()
+        {
+            errorProvider = new ErrorProvider();
+            //errorProvider.Icon = Properties.Resources.error_icon;
+        }
+
         private void Addbutton_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(firstNametextBox.Text) && !string.IsNullOrEmpty(LastNametextBox.Text) && !string.IsNullOrEmpty(PhoneNumbermaskedTextBox.Text) && !string.IsNullOrEmpty(EmailtextBox.Text) && !string.IsNullOrEmpty(categoryComboBox.Text))
+            // Clear any previous error messages
+            errorProvider.Clear();
+
+            if (AllFieldsValid())
             {
                 try
                 {
-                    using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                    using (SqlConnection con = new SqlConnection("removed for security"))
                     {
-                        using (SqlCommand command = new SqlCommand("INSERT INTO Customer (fname, lname, phone_number, email, category) VALUES (@fname, @lname, @phone_number, @email, @category)", con))
+                        using (SqlCommand command = new SqlCommand("INSERT INTO Customer (fname, lname, phone_number, email, category, username, password, address, imageUrl, postCode, createdDate) VALUES (@fname, @lname, @phone_number, @email, @category, @username, @password, @address, @imageUrl, @postCode, @createdDate)", con))
                         {
                             con.Open();
                             command.Parameters.AddWithValue("@fname", firstNametextBox.Text);
                             command.Parameters.AddWithValue("@lname", LastNametextBox.Text);
-                            //command.Parameters.AddWithValue("@phone_number", phoneNumbertextBox.Text);
-
-                            string phoneNumber = PhoneNumbermaskedTextBox.Text;
-
-
-                            if (phoneNumber.StartsWith("0"))
-                            {
-                                // Phone number starts with zero, you can proceed to add it as a parameter
-                                command.Parameters.AddWithValue("@phone_number", phoneNumber);
-                            }
-                            else
-                            {
-                                MessageBox.Show("Phone number must start with zero");
-                                PhoneNumbermaskedTextBox.Focus();
-                            }
-
-
-                            //command.Parameters.AddWithValue("@phone_number", PhoneNumbermaskedTextBox.Text);
-
-
-                            string email = EmailtextBox.Text.Trim().ToLower(); // Convert the input to lowercase
-
-                            // Check if the email contains spaces or has uppercase letters
-                            if (email.Contains(" ") || email != EmailtextBox.Text)
-                            {
-                                // Invalid email format (spaces or uppercase letters), display an error message
-                                MessageBox.Show("Invalid email format. Please enter a valid email address in lowercase without spaces.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                // Set the focus back to the EmailtextBox
-                                EmailtextBox.Focus();
-
-                                // Optionally, you can clear the incorrect input from the textbox
-                                EmailtextBox.Text = "";
-
-                                // Optionally, you can cancel the validation event to prevent moving to the next control
-                                //e.Cancel = true;
-                            }
-                            else if (email.EndsWith("@gmail.com") || email.EndsWith("@ukzn.ac.za"))
-                            {
-                                // Valid email format
-                                // Perform any additional processing or store the email address
-                                command.Parameters.AddWithValue("@email", EmailtextBox.Text);
-                            }
-                            else
-                            {
-                                // Invalid email domain, display an error message
-                                MessageBox.Show("Unsupported domain. Please enter an email address ending with either @gmail.com or @ukzn.ac.za.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                // Set the focus back to the EmailtextBox
-                                EmailtextBox.Focus();
-
-                                // Optionally, you can clear the incorrect input from the textbox
-                                EmailtextBox.Text = "";
-
-                                // Optionally, you can cancel the validation event to prevent moving to the next control
-                                //e.Cancel = true;
-                            }
-
+                            command.Parameters.AddWithValue("@phone_number", PhoneNumbermaskedTextBox.Text);
+                            command.Parameters.AddWithValue("@email", EmailtextBox.Text);
                             command.Parameters.AddWithValue("@category", categoryComboBox.Text);
+                            
+                            // Generate random username and password
+                            string username = GenerateRandomUsername();
+                            string password = GenerateRandomPassword();
+                            // Send username and password to the provided email
+                           SendCredentialsToEmail(username, password, EmailtextBox.Text);
+                            // Add username and password to the database
+                            command.Parameters.AddWithValue("@username", username);
+                            command.Parameters.AddWithValue("@password", password);
+                            command.Parameters.AddWithValue("@address", null);
+                            command.Parameters.AddWithValue("@imageUrl", null);
+                            command.Parameters.AddWithValue("@postCode", null);
+                            command.Parameters.AddWithValue("@createdDate", DateTime.Now);
 
                             command.ExecuteNonQuery();
                             MessageBox.Show(firstNametextBox.Text + " " + LastNametextBox.Text + " added successfully", "New Customer");
                         }
                     }
 
-                    firstNametextBox.Text = "";
-                    LastNametextBox.Text = "";
-                    //phoneNumbertextBox.Text = "";
-                    PhoneNumbermaskedTextBox.Text = "";
-
-                    EmailtextBox.Text = "";
-                    categoryComboBox.Text = "";
+                    // Clear textboxes after successful insertion
+                    ClearTextBoxes();
                     this.taCustomer1.Fill(this.ds1.Customer);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred while adding the customer.", "Error");
+                    MessageBox.Show("An error occurred while adding the customer: " + ex.Message, "Error");
                 }
             }
             else
@@ -204,6 +172,148 @@ namespace BriteSparxCafeSystem
             }
 
         }
+
+        private bool AllFieldsValid()
+        {
+            bool isValid = true;
+
+            // Validate first name
+            if (string.IsNullOrWhiteSpace(firstNametextBox.Text))
+            {
+                errorProvider.SetError(firstNametextBox, "Please enter a valid first name.");
+                isValid = false;
+            }
+
+            // Validate last name
+            if (string.IsNullOrWhiteSpace(LastNametextBox.Text))
+            {
+                errorProvider.SetError(LastNametextBox, "Please enter a valid last name.");
+                isValid = false;
+            }
+
+            // Validate phone number
+            string phoneNumber = PhoneNumbermaskedTextBox.Text;
+            if (string.IsNullOrWhiteSpace(phoneNumber) || !phoneNumber.StartsWith("0"))
+            {
+                errorProvider.SetError(PhoneNumbermaskedTextBox, "Please enter a valid phone number starting with zero.");
+                isValid = false;
+            }
+
+            // Validate email
+            string email = EmailtextBox.Text.Trim().ToLower();
+            if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
+            {
+                errorProvider.SetError(EmailtextBox, "Please enter a valid email address.");
+                isValid = false;
+            }
+
+            // Validate category
+            if (string.IsNullOrWhiteSpace(categoryComboBox.Text))
+            {
+                errorProvider.SetError(categoryComboBox, "Please select a category.");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            // Check if the email ends with "@gmail.com" or "@ukzn.ac.za"
+            return email.EndsWith("@gmail.com", StringComparison.OrdinalIgnoreCase) ||
+                   email.EndsWith("@ukzn.ac.za", StringComparison.OrdinalIgnoreCase);
+        }
+
+
+        private void ClearTextBoxes()
+        {
+            firstNametextBox.Text = "";
+            LastNametextBox.Text = "";
+            PhoneNumbermaskedTextBox.Text = "";
+            EmailtextBox.Text = "";
+            categoryComboBox.Text = "";
+        }
+        
+        private string GenerateRandomUsername()
+        {
+
+            return $"{firstNametextBox.Text.ToLower()}{LastNametextBox.Text.ToLower()}{new Random().Next(1000, 9999)}";
+        }
+
+        private string GenerateRandomPassword()
+        { 
+            return $"{firstNametextBox.Text.ToLower().Substring(0,3)}{LastNametextBox.Text.ToLower().Substring(0, 3)}{new Random().Next(1000, 9999)}";
+        }
+
+
+        private void SendCredentialsToEmail(string username, string password, string email)
+        {
+            string from = "mwelasejae@gmail.com";
+            string pass = "removed for security";
+
+            MailMessage message = new MailMessage
+            {
+                To = { email },
+                From = new MailAddress(from),
+                Subject = "Welcome to Brite Sparx Cafe - Your Account Credentials",
+                Body = GenerateEmailBody(username, password),
+                IsBodyHtml = true
+            };
+
+            // Set up the SMTP client
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 25,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(from, pass)
+            };
+
+            try
+            {
+                // Send the email
+                smtp.Send(message);
+                MessageBox.Show("Credentials sent successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while sending credentials: " + ex.ToString(), "Error");
+            }
+        }
+
+        private string GenerateEmailBody(string username, string password)
+        {
+            string emailBody = @"
+        <html>
+        <head>
+            <!-- Add the styles here -->
+        </head>
+        <body>
+            <div class='container'>
+                <div class='header'>
+                    <h2>Welcome to Brite Sparx Cafe!</h2>
+                </div>
+                <div class='content'>
+                    <p>Dear [Customer Name],</p>
+                    <p>Thank you for choosing Brite Sparx Cafe. We've created an account for you, and here are your login credentials:</p>
+                    <p><strong>Username:</strong> " + username + @"</p>
+                    <p><strong>Password:</strong> " + password + @"</p>
+                    <p>You can use these credentials to log in to our website and place orders online. If you have any questions or need assistance, feel free to contact our support team.</p>
+                    <p>Best regards,<br>Brite Sparx Cafe Team</p>
+                    <p><a href='[YourWebsiteLink]' class='button'>Visit Our Website</a></p>
+                </div>
+            </div>
+        </body>
+        </html>";
+
+            // Replace placeholders with actual values
+            emailBody = emailBody.Replace("[Customer Name]", firstNametextBox.Text + LastNametextBox.Text); // Replace with actual customer name
+            emailBody = emailBody.Replace("[YourWebsiteLink]", "https://www.yourwebsite.com"); // Replace with your actual website link
+
+            return emailBody;
+        }
+
 
 
         private void Updatebutton_Click(object sender, EventArgs e)
@@ -214,7 +324,7 @@ namespace BriteSparxCafeSystem
 
                 if (result == DialogResult.Yes)
                 {
-                    using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                    using (SqlConnection con = new SqlConnection("removed for security"))
                     {
                         con.Open();
 
@@ -398,7 +508,7 @@ namespace BriteSparxCafeSystem
                     DialogResult result = MessageBox.Show("Are you sure you want to archive this Customer?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        using (SqlConnection con = new SqlConnection("Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7"))
+                        using (SqlConnection con = new SqlConnection("removed for security"))
                         {
                             con.Open();
                             SqlCommand selectCommand = new SqlCommand("SELECT * FROM Customer WHERE cust_ID = @cust_ID", con);
@@ -450,7 +560,7 @@ namespace BriteSparxCafeSystem
         {
             try
             {
-                SqlConnection con = new SqlConnection("Data Source = 146.230.177.46; Initial Catalog = GroupWst17; User ID = GroupWst17; Password = w31v7");
+                SqlConnection con = new SqlConnection("removed for security");
                 con.Open();
                 SqlCommand command = new SqlCommand("SELECT * FROM Customer WHERE fname LIKE @fname OR lname LIKE @lname", con);
 
@@ -551,9 +661,10 @@ namespace BriteSparxCafeSystem
                 {
                     if (DeliveryComboBox.Text == "QUAD")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 1;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -569,9 +680,10 @@ namespace BriteSparxCafeSystem
                     }
                     else if (DeliveryComboBox.Text == "L BLOCK")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 2;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -588,9 +700,10 @@ namespace BriteSparxCafeSystem
 
                     else if (DeliveryComboBox.Text == "G BLOCK (bus stop)")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 3;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -607,9 +720,10 @@ namespace BriteSparxCafeSystem
 
                     else if (DeliveryComboBox.Text == "SPORT CENTRE")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 4;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -628,9 +742,10 @@ namespace BriteSparxCafeSystem
 
                     else if (DeliveryComboBox.Text == "FOREST HILL RESIDENCE")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 5;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -647,10 +762,10 @@ namespace BriteSparxCafeSystem
 
                     else if (DeliveryComboBox.Text == "d(CHURCH)")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 6;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
-                        this.taOrder1.Fill(this.ds1.OrderTable);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
                             if (gvMenu.Rows[i].Cells[6].Value != null)
@@ -667,10 +782,10 @@ namespace BriteSparxCafeSystem
 
                     else if (DeliveryComboBox.Text == "O BLOCK")
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         deliveryPoint = 7;
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
-                        this.taOrder1.Fill(this.ds1.OrderTable);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), deliveryPoint, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
                             if (gvMenu.Rows[i].Cells[6].Value != null)
@@ -685,8 +800,9 @@ namespace BriteSparxCafeSystem
                     }
                     else
                     {
+                        string uniqueID = Guid.NewGuid().ToString();
                         staffTableAdapter1.FillByUser(ds2.Staff, LoginForm.username, LoginForm.password);
-                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), null, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now);
+                        taOrder1.InsertOrder(int.Parse(label15.Text), int.Parse(ds2.Staff.Rows[0][0].ToString()), null, decimal.Parse(orderTotaltextBox.Text, System.Globalization.NumberStyles.Currency), "Pending", DateTime.Now, uniqueID);
                         this.taOrder1.Fill(this.ds1.OrderTable);
                         for (int i = 0; i < gvMenu.Rows.Count; i++)
                         {
@@ -712,7 +828,7 @@ namespace BriteSparxCafeSystem
                 int rowIndex = gvMenu.CurrentRow.Index;
                 int qohColumnIndex = 5;
                 int qoh = int.Parse(gvMenu.Rows[rowIndex].Cells[qohColumnIndex].Value.ToString());
-                string connectionString = "Data Source=146.230.177.46;Initial Catalog=GroupWst17;User ID=GroupWst17;Password=w31v7";
+                string connectionString = "removed for security";
                 string updateQuery = "UPDATE Menu SET quantity_on_hand = @quantity_on_hand WHERE menu_ID = @menu_ID";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))

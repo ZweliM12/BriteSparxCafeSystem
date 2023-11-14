@@ -86,8 +86,20 @@
             this.label12 = new System.Windows.Forms.Label();
             this.tbSearchCustomer = new System.Windows.Forms.TabPage();
             this.gvMenuTotal = new System.Windows.Forms.DataGridView();
+            this.menuIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityonhandDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuTotalBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.gvMenu = new System.Windows.Forms.DataGridView();
+            this.menuIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityonhandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.menuBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label19 = new System.Windows.Forms.Label();
             this.cbutton = new System.Windows.Forms.Button();
@@ -141,18 +153,6 @@
             this.menuTotalUpdatedBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuUpdatedTableAdapter = new BriteSparxCafeSystem.GroupWst17DataSetTableAdapters.MenuUpdatedTableAdapter();
             this.menuTotalUpdatedBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.menuIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityonhandDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityonhandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tabControl1.SuspendLayout();
             this.tpAddCustomer.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -224,7 +224,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.gvOrderTableUpdated);
-            this.groupBox4.Location = new System.Drawing.Point(888, 637);
+            this.groupBox4.Location = new System.Drawing.Point(888, 638);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -248,11 +248,12 @@
             this.dataGridViewTextBoxColumn7});
             this.gvOrderTableUpdated.DataSource = this.orderTableUpdatedBindingSource;
             this.gvOrderTableUpdated.Location = new System.Drawing.Point(21, 41);
+            this.gvOrderTableUpdated.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gvOrderTableUpdated.Name = "gvOrderTableUpdated";
             this.gvOrderTableUpdated.RowHeadersWidth = 45;
             this.gvOrderTableUpdated.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.gvOrderTableUpdated.RowTemplate.Height = 24;
-            this.gvOrderTableUpdated.Size = new System.Drawing.Size(1091, 275);
+            this.gvOrderTableUpdated.Size = new System.Drawing.Size(1091, 274);
             this.gvOrderTableUpdated.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -335,7 +336,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(1112, 456);
+            this.groupBox2.Size = new System.Drawing.Size(1112, 455);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Customers";
@@ -429,7 +430,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(15, 29);
+            this.label14.Location = new System.Drawing.Point(15, 30);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(287, 32);
             this.label14.TabIndex = 17;
@@ -519,17 +520,17 @@
             this.panel2.Controls.Add(this.Addbutton);
             this.panel2.Controls.Add(this.label12);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(6, 171);
+            this.panel2.Location = new System.Drawing.Point(5, 171);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(876, 787);
+            this.panel2.Size = new System.Drawing.Size(877, 787);
             this.panel2.TabIndex = 12;
             // 
             // PhoneNumbermaskedTextBox
             // 
             this.PhoneNumbermaskedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PhoneNumbermaskedTextBox.Location = new System.Drawing.Point(312, 353);
-            this.PhoneNumbermaskedTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.PhoneNumbermaskedTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.PhoneNumbermaskedTextBox.Mask = "0000000000";
             this.PhoneNumbermaskedTextBox.Name = "PhoneNumbermaskedTextBox";
             this.PhoneNumbermaskedTextBox.Size = new System.Drawing.Size(501, 41);
@@ -538,7 +539,7 @@
             // Exitbutton
             // 
             this.Exitbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Exitbutton.Location = new System.Drawing.Point(580, 648);
+            this.Exitbutton.Location = new System.Drawing.Point(580, 647);
             this.Exitbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Exitbutton.Name = "Exitbutton";
             this.Exitbutton.Size = new System.Drawing.Size(245, 53);
@@ -550,7 +551,7 @@
             // Clearbutton
             // 
             this.Clearbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clearbutton.Location = new System.Drawing.Point(300, 648);
+            this.Clearbutton.Location = new System.Drawing.Point(300, 647);
             this.Clearbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Clearbutton.Name = "Clearbutton";
             this.Clearbutton.Size = new System.Drawing.Size(245, 53);
@@ -562,7 +563,7 @@
             // Searchbutton
             // 
             this.Searchbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Searchbutton.Location = new System.Drawing.Point(22, 648);
+            this.Searchbutton.Location = new System.Drawing.Point(21, 647);
             this.Searchbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Searchbutton.Name = "Searchbutton";
             this.Searchbutton.Size = new System.Drawing.Size(245, 53);
@@ -611,7 +612,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(26, 143);
+            this.label8.Location = new System.Drawing.Point(27, 143);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(190, 36);
             this.label8.TabIndex = 54;
@@ -627,7 +628,7 @@
             "Visitor",
             "Other"});
             this.categoryComboBox.Location = new System.Drawing.Point(312, 481);
-            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.categoryComboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(501, 39);
             this.categoryComboBox.TabIndex = 53;
@@ -656,7 +657,7 @@
             // firstNametextBox
             // 
             this.firstNametextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNametextBox.Location = new System.Drawing.Point(312, 211);
+            this.firstNametextBox.Location = new System.Drawing.Point(312, 210);
             this.firstNametextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.firstNametextBox.Multiline = true;
             this.firstNametextBox.Name = "firstNametextBox";
@@ -668,7 +669,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(26, 79);
+            this.label11.Location = new System.Drawing.Point(27, 79);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(799, 36);
             this.label11.TabIndex = 47;
@@ -678,7 +679,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(214, 22);
+            this.label10.Location = new System.Drawing.Point(213, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(276, 38);
             this.label10.TabIndex = 46;
@@ -688,7 +689,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(26, 487);
+            this.label7.Location = new System.Drawing.Point(27, 487);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(143, 36);
             this.label7.TabIndex = 37;
@@ -707,7 +708,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(30, 418);
+            this.label5.Location = new System.Drawing.Point(29, 418);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(102, 36);
             this.label5.TabIndex = 33;
@@ -717,7 +718,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 353);
+            this.label4.Location = new System.Drawing.Point(29, 353);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(236, 36);
             this.label4.TabIndex = 32;
@@ -737,7 +738,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(30, 211);
+            this.label2.Location = new System.Drawing.Point(29, 210);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(177, 36);
             this.label2.TabIndex = 28;
@@ -746,7 +747,7 @@
             // Addbutton
             // 
             this.Addbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Addbutton.Location = new System.Drawing.Point(22, 591);
+            this.Addbutton.Location = new System.Drawing.Point(21, 591);
             this.Addbutton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Addbutton.Name = "Addbutton";
             this.Addbutton.Size = new System.Drawing.Size(245, 53);
@@ -759,7 +760,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(67, 35);
+            this.label12.Location = new System.Drawing.Point(67, 34);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(13, 17);
             this.label12.TabIndex = 26;
@@ -801,12 +802,56 @@
             this.priceDataGridViewTextBoxColumn1,
             this.quantityonhandDataGridViewTextBoxColumn1});
             this.gvMenuTotal.DataSource = this.menuTotalBindingSource1;
-            this.gvMenuTotal.Location = new System.Drawing.Point(12, 776);
+            this.gvMenuTotal.Location = new System.Drawing.Point(12, 775);
+            this.gvMenuTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gvMenuTotal.Name = "gvMenuTotal";
             this.gvMenuTotal.RowHeadersWidth = 51;
             this.gvMenuTotal.RowTemplate.Height = 24;
             this.gvMenuTotal.Size = new System.Drawing.Size(923, 150);
             this.gvMenuTotal.TabIndex = 67;
+            // 
+            // menuIDDataGridViewTextBoxColumn1
+            // 
+            this.menuIDDataGridViewTextBoxColumn1.DataPropertyName = "menu_ID";
+            this.menuIDDataGridViewTextBoxColumn1.HeaderText = "menu_ID";
+            this.menuIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.menuIDDataGridViewTextBoxColumn1.Name = "menuIDDataGridViewTextBoxColumn1";
+            this.menuIDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // categoryIDDataGridViewTextBoxColumn1
+            // 
+            this.categoryIDDataGridViewTextBoxColumn1.DataPropertyName = "category_ID";
+            this.categoryIDDataGridViewTextBoxColumn1.HeaderText = "category_ID";
+            this.categoryIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.categoryIDDataGridViewTextBoxColumn1.Name = "categoryIDDataGridViewTextBoxColumn1";
+            this.categoryIDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // priceDataGridViewTextBoxColumn1
+            // 
+            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "price";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.priceDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.priceDataGridViewTextBoxColumn1.HeaderText = "price";
+            this.priceDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
+            this.priceDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // quantityonhandDataGridViewTextBoxColumn1
+            // 
+            this.quantityonhandDataGridViewTextBoxColumn1.DataPropertyName = "quantity_on_hand";
+            this.quantityonhandDataGridViewTextBoxColumn1.HeaderText = "quantity_on_hand";
+            this.quantityonhandDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.quantityonhandDataGridViewTextBoxColumn1.Name = "quantityonhandDataGridViewTextBoxColumn1";
+            this.quantityonhandDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.quantityonhandDataGridViewTextBoxColumn1.Width = 135;
             // 
             // menuTotalBindingSource1
             // 
@@ -827,11 +872,92 @@
             this.Quantity});
             this.gvMenu.DataSource = this.menuBindingSource1;
             this.gvMenu.Location = new System.Drawing.Point(12, 441);
+            this.gvMenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gvMenu.Name = "gvMenu";
             this.gvMenu.RowHeadersWidth = 51;
             this.gvMenu.RowTemplate.Height = 24;
             this.gvMenu.Size = new System.Drawing.Size(1217, 318);
             this.gvMenu.TabIndex = 66;
+            // 
+            // menuIDDataGridViewTextBoxColumn
+            // 
+            this.menuIDDataGridViewTextBoxColumn.DataPropertyName = "menu_ID";
+            this.menuIDDataGridViewTextBoxColumn.HeaderText = "menu_ID";
+            this.menuIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.menuIDDataGridViewTextBoxColumn.Name = "menuIDDataGridViewTextBoxColumn";
+            this.menuIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.menuIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.menuIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // categoryIDDataGridViewTextBoxColumn
+            // 
+            this.categoryIDDataGridViewTextBoxColumn.DataPropertyName = "category_ID";
+            this.categoryIDDataGridViewTextBoxColumn.HeaderText = "category_ID";
+            this.categoryIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.categoryIDDataGridViewTextBoxColumn.Name = "categoryIDDataGridViewTextBoxColumn";
+            this.categoryIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.categoryIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoryIDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.Width = 135;
+            // 
+            // description
+            // 
+            this.description.DataPropertyName = "description";
+            this.description.HeaderText = "description";
+            this.description.MinimumWidth = 6;
+            this.description.Name = "description";
+            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.description.Width = 185;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "price";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.priceDataGridViewTextBoxColumn.HeaderText = "price";
+            this.priceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.priceDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.priceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // quantityonhandDataGridViewTextBoxColumn
+            // 
+            this.quantityonhandDataGridViewTextBoxColumn.DataPropertyName = "quantity_on_hand";
+            this.quantityonhandDataGridViewTextBoxColumn.HeaderText = "quantity_on_hand";
+            this.quantityonhandDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.quantityonhandDataGridViewTextBoxColumn.Name = "quantityonhandDataGridViewTextBoxColumn";
+            this.quantityonhandDataGridViewTextBoxColumn.ReadOnly = true;
+            this.quantityonhandDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Quantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Quantity.Width = 120;
             // 
             // menuBindingSource1
             // 
@@ -853,7 +979,7 @@
             // 
             this.cbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbutton.Location = new System.Drawing.Point(1267, 842);
-            this.cbutton.Margin = new System.Windows.Forms.Padding(4);
+            this.cbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbutton.Name = "cbutton";
             this.cbutton.Size = new System.Drawing.Size(273, 50);
             this.cbutton.TabIndex = 64;
@@ -865,7 +991,7 @@
             // 
             this.Removebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Removebutton.Location = new System.Drawing.Point(21, 955);
-            this.Removebutton.Margin = new System.Windows.Forms.Padding(4);
+            this.Removebutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Removebutton.Name = "Removebutton";
             this.Removebutton.Size = new System.Drawing.Size(316, 50);
             this.Removebutton.TabIndex = 63;
@@ -955,11 +1081,11 @@
             // 
             this.PaymentgroupBox.Controls.Add(this.PaymentMethodcomboBox);
             this.PaymentgroupBox.Controls.Add(this.label18);
-            this.PaymentgroupBox.Location = new System.Drawing.Point(1267, 685);
+            this.PaymentgroupBox.Location = new System.Drawing.Point(1267, 686);
             this.PaymentgroupBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PaymentgroupBox.Name = "PaymentgroupBox";
             this.PaymentgroupBox.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.PaymentgroupBox.Size = new System.Drawing.Size(630, 123);
+            this.PaymentgroupBox.Size = new System.Drawing.Size(629, 123);
             this.PaymentgroupBox.TabIndex = 60;
             this.PaymentgroupBox.TabStop = false;
             this.PaymentgroupBox.Text = "Payment";
@@ -995,7 +1121,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(630, 165);
+            this.groupBox1.Size = new System.Drawing.Size(629, 165);
             this.groupBox1.TabIndex = 58;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Delivery Points";
@@ -1014,7 +1140,7 @@
             // DeliverycheckBox
             // 
             this.DeliverycheckBox.AutoSize = true;
-            this.DeliverycheckBox.Location = new System.Drawing.Point(54, 42);
+            this.DeliverycheckBox.Location = new System.Drawing.Point(53, 42);
             this.DeliverycheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeliverycheckBox.Name = "DeliverycheckBox";
             this.DeliverycheckBox.Size = new System.Drawing.Size(164, 32);
@@ -1034,7 +1160,7 @@
             "FOREST HILL RESIDENCE",
             "d(CHURCH)",
             "O BLOCK"});
-            this.DeliveryComboBox.Location = new System.Drawing.Point(329, 40);
+            this.DeliveryComboBox.Location = new System.Drawing.Point(329, 39);
             this.DeliveryComboBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DeliveryComboBox.Name = "DeliveryComboBox";
             this.DeliveryComboBox.Size = new System.Drawing.Size(273, 36);
@@ -1066,7 +1192,7 @@
             this.finalizeOrderbutton.Enabled = false;
             this.finalizeOrderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.finalizeOrderbutton.Location = new System.Drawing.Point(1624, 842);
-            this.finalizeOrderbutton.Margin = new System.Windows.Forms.Padding(4);
+            this.finalizeOrderbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.finalizeOrderbutton.Name = "finalizeOrderbutton";
             this.finalizeOrderbutton.Size = new System.Drawing.Size(273, 50);
             this.finalizeOrderbutton.TabIndex = 19;
@@ -1077,17 +1203,17 @@
             // orderTotaltextBox
             // 
             this.orderTotaltextBox.Location = new System.Drawing.Point(1608, 441);
-            this.orderTotaltextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.orderTotaltextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.orderTotaltextBox.Name = "orderTotaltextBox";
             this.orderTotaltextBox.ReadOnly = true;
-            this.orderTotaltextBox.Size = new System.Drawing.Size(242, 34);
+            this.orderTotaltextBox.Size = new System.Drawing.Size(241, 34);
             this.orderTotaltextBox.TabIndex = 18;
             // 
             // AddToOrderbutton
             // 
             this.AddToOrderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddToOrderbutton.Location = new System.Drawing.Point(1267, 425);
-            this.AddToOrderbutton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddToOrderbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddToOrderbutton.Name = "AddToOrderbutton";
             this.AddToOrderbutton.Size = new System.Drawing.Size(296, 50);
             this.AddToOrderbutton.TabIndex = 17;
@@ -1268,125 +1394,6 @@
             // 
             this.menuTotalUpdatedBindingSource2.DataMember = "MenuTotalUpdated";
             this.menuTotalUpdatedBindingSource2.DataSource = this.ds1;
-            // 
-            // menuIDDataGridViewTextBoxColumn1
-            // 
-            this.menuIDDataGridViewTextBoxColumn1.DataPropertyName = "menu_ID";
-            this.menuIDDataGridViewTextBoxColumn1.HeaderText = "menu_ID";
-            this.menuIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.menuIDDataGridViewTextBoxColumn1.Name = "menuIDDataGridViewTextBoxColumn1";
-            this.menuIDDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // categoryIDDataGridViewTextBoxColumn1
-            // 
-            this.categoryIDDataGridViewTextBoxColumn1.DataPropertyName = "category_ID";
-            this.categoryIDDataGridViewTextBoxColumn1.HeaderText = "category_ID";
-            this.categoryIDDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.categoryIDDataGridViewTextBoxColumn1.Name = "categoryIDDataGridViewTextBoxColumn1";
-            this.categoryIDDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // priceDataGridViewTextBoxColumn1
-            // 
-            this.priceDataGridViewTextBoxColumn1.DataPropertyName = "price";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.priceDataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.priceDataGridViewTextBoxColumn1.HeaderText = "price";
-            this.priceDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.priceDataGridViewTextBoxColumn1.Name = "priceDataGridViewTextBoxColumn1";
-            this.priceDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // quantityonhandDataGridViewTextBoxColumn1
-            // 
-            this.quantityonhandDataGridViewTextBoxColumn1.DataPropertyName = "quantity_on_hand";
-            this.quantityonhandDataGridViewTextBoxColumn1.HeaderText = "quantity_on_hand";
-            this.quantityonhandDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.quantityonhandDataGridViewTextBoxColumn1.Name = "quantityonhandDataGridViewTextBoxColumn1";
-            this.quantityonhandDataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.quantityonhandDataGridViewTextBoxColumn1.Width = 135;
-            // 
-            // menuIDDataGridViewTextBoxColumn
-            // 
-            this.menuIDDataGridViewTextBoxColumn.DataPropertyName = "menu_ID";
-            this.menuIDDataGridViewTextBoxColumn.HeaderText = "menu_ID";
-            this.menuIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.menuIDDataGridViewTextBoxColumn.Name = "menuIDDataGridViewTextBoxColumn";
-            this.menuIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.menuIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // categoryIDDataGridViewTextBoxColumn
-            // 
-            this.categoryIDDataGridViewTextBoxColumn.DataPropertyName = "category_ID";
-            this.categoryIDDataGridViewTextBoxColumn.HeaderText = "category_ID";
-            this.categoryIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.categoryIDDataGridViewTextBoxColumn.Name = "categoryIDDataGridViewTextBoxColumn";
-            this.categoryIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.categoryIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nameDataGridViewTextBoxColumn.Width = 135;
-            // 
-            // description
-            // 
-            this.description.DataPropertyName = "description";
-            this.description.HeaderText = "description";
-            this.description.MinimumWidth = 6;
-            this.description.Name = "description";
-            this.description.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.description.Width = 185;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "price";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.priceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.priceDataGridViewTextBoxColumn.HeaderText = "price";
-            this.priceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.priceDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // quantityonhandDataGridViewTextBoxColumn
-            // 
-            this.quantityonhandDataGridViewTextBoxColumn.DataPropertyName = "quantity_on_hand";
-            this.quantityonhandDataGridViewTextBoxColumn.HeaderText = "quantity_on_hand";
-            this.quantityonhandDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.quantityonhandDataGridViewTextBoxColumn.Name = "quantityonhandDataGridViewTextBoxColumn";
-            this.quantityonhandDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Quantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Quantity.Width = 120;
             // 
             // AddCustomerForm
             // 

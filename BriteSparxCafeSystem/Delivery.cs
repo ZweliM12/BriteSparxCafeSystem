@@ -20,11 +20,13 @@ namespace BriteSparxCafeSystem
 
         private void Delivery_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'ds1.OrderTableUpdated' table. You can move, or remove it, as needed.
+            //this.orderTableUpdatedTableAdapter.Fill(this.ds1.OrderTableUpdated);
             // TODO: This line of code loads data into the 'ds1.Delivery_Cust' table. You can move, or remove it, as needed.
             this.delivery_CustTableAdapter.Fill(this.ds1.Delivery_Cust);
 
             // TODO: This line of code loads data into the 'groupWst17DataSet1.Customer' table. You can move, or remove it, as needed.
-            this.taCustomer1.Fill(this.groupWst17DataSet1.Customer);
+            //this.taCustomer1.Fill(this.groupWst17DataSet1.Customer);
             if (LoginForm.username == "velaphiBSC" && LoginForm.password == "velaphi@23")
             {
                 this.delivery_CustTableAdapter.Fill(this.ds1.Delivery_Cust);
